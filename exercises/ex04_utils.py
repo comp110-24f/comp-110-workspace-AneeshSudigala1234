@@ -3,42 +3,66 @@
 __author__ = "730744298"
 
 
-def all(list: list[int], int: int) -> bool:
-    """Checks if each item in 'list' is equal to 'int'"""
-    while len(list) > 0:
-        i = list.pop()
-        if i != int:
-            return False
-    return True
-
-
-def max(list: list[int]) -> int:
-    """Finds the largest iteam in 'list'"""
-    # Error if length of 'list' is 0
-    if len(list) == 0:
-        raise ValueError("max() arg is an empty List")
-    # Code if length of 'list' is not 0
+def all(lst: list[int], num: int) -> bool:
+    """Every item in a list should be equal to an integer"""
+    i: int = 0
+    count: int = 0
+    # Returns False if list is empty
+    if len(lst) == 0:
+        return False
+    # Continues with code if list contains items
     else:
-        max: int = 0
-        while len(list) > 0:
-            i = list.pop()
-            if i > max:
-                max = i
-        return max
+        # Loops through list
+        while i < len(lst):
+            if lst[i] == num:
+                count += 1
+            i += 1
+    # Checks if everything is met
+    if count == len(lst):
+        return True
+    else:
+        return False
+
+
+def max(lst: list[int]) -> int:
+    """Finds the largest item in a list"""
+    # Raises error is list is empty
+    if len(lst) == 0:
+        raise ValueError("max() arg is an empty List")
+        exit()
+    # Continues with code if list contains items
+    else:
+        # Declares variables
+        current_num: int = 0
+        greatest_num: int = lst[current_num]
+        # Loops through list
+        while current_num < len(lst) - 1:
+            if lst[current_num + 1] > greatest_num:
+                greatest_num = lst[current_num + 1]
+            current_num += 1
+        return greatest_num
 
 
 def is_equal(list1: list[int], list2: list[int]) -> bool:
-    """Checks if 'list1' is equal to 'list2'"""
-    # Loops through 'list2' inside of the loop of 'list1'
-    while len(list1) > 0:
-        i = list1.pop()
-        while len(list2) > 0:
-            j = list2.pop()
-            if i != j:
+    """Checks if both lists are the same"""
+    i: int = 0
+    # Returns False if both lists are not the same length
+    if len(list1) != len(list2):
+        return False
+    # Continues with code if both lists are the same length
+    else:
+        while i < len(list1):
+            if list1[i] != list2[i]:
                 return False
-    return True
+            i += 1
+        return True
 
 
 def extend(list1: list[int], list2: list[int]) -> None:
-    """Combines 'list1' and 'list2'"""
-    list1 += list2
+    """Adds both lists together"""
+    i: int = 0
+    while i < len(list2):
+        # Adds each item of the second list to the first list
+        list1.append(list2[i])
+        i += 1
+    return None
